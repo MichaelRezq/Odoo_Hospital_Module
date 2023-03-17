@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+<!--        <record id="iti_student_menu" model="iti.student" >-->
+<!--            <field name="name" >Michael</field>-->
+<!--            <field name="email" >michaelrezq9@gmail.com</field>-->
+<!--        </record>-->
+
+<!--window action-->
+        <record id ='iti_student_action' model="ir.actions.act_window">
+
+              <field name="name" >Students</field>
+              <field name="res_model" >iti.student</field>
+             <field name="view_mode" >tree,form</field>
+        </record>
+        <menuitem id ='iti_school_root_menu' name="school  Management" />
+
+        <menuitem id ='iti_student_menu' name="students"
+                  parent="iti_school_root_menu"
+                  action="iti_student_action"/>
+
+    </data>
+
+
+</odoo>

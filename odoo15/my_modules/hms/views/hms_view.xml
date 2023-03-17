@@ -1,0 +1,73 @@
+<odoo>
+  <data>
+     <record model="ir.ui.view" id="patient_form_view">
+            <field name="name">patient.form</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="FirsName"  attrs="{'required': True}"/>
+              <field name="LastName"  attrs="{'required': True}"/>
+              <field name="BirthDate"/>
+
+
+
+              <field name="CRRatio" attrs="{'required': [('PCR', '=', True)]}"/>
+              <field name="Bloodtype"/>
+              <field name="PCR"/>
+              <field name="Image"/>
+              <field name="Address"/>
+              <field name="Age"/>
+              <field name="state"/>
+              <field name="departemnt_id" domain ="[('is_opened', '=', True)]"/>
+              <field name="doctors_id"  widget="many2many_tags" attrs="{'readonly': [('departemnt_id', '=', False)]}"/>
+              <field name="History" attrs="{'invisible': [('Age', '&lt;', 50)]}"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+
+
+        <record id="view_patient_tree" model="ir.ui.view">
+            <field name="name">Patients</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="FirsName" />
+                    <field name="LastName" />
+                    <field name="BirthDate"/>
+                    <field name="History"/>
+                    <field name="CRRatio"/>
+                    <field name="Bloodtype"/>
+                    <field name="PCR"/>
+                    <field name="Image"/>
+                    <field name="Address"/>
+                    <field name="Age"/>
+                    <field name="departemnt_id"/>
+                    <field name="state"/>
+                    <field name="doctors_id" />
+
+                </tree>
+            </field>
+        </record>
+
+  <record model="ir.actions.act_window" id="hms_action">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    <menuitem id="menu"
+            name="Patients"
+           />
+    <menuitem id="menu1"
+            name="Patient1"
+             parent="menu"
+             action="hms_action"
+           />
+  </data>
+</odoo>
